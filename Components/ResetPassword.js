@@ -6,84 +6,46 @@ import {
 import bgImage from '../Images/background.jpg';
 import logo from '../Images/logo.png';
 import Icon from 'react-native-vector-icons/Ionicons';
+
 import { connect } from 'react-redux';
-import {User} from "../Class/user"
 import firebase from 'firebase';
 
 const { width: WIDTH } = Dimensions.get('window')
-class Login extends Component {
+
+class ResetPassword extends Component {
 
 	constructor(props) {
 		super(props);
+		
+		
 		this.state = {
-			showPass: true,
-			press: false,
-			email: "test@test.fr",
-			password: "test123",
-			isConnected:false,
+			email: "",
 		}
 	}
 
 	componentDidMount() {
+	
+	
+		  
 	}
 
-	showPass = () => {
-		if (this.state.press == false) {
-			this.setState({
-				showPass: false,
-				press: true
-			});
-		} else {
-			this.setState({
-				showPass: true,
-				press: false
-			});
-		}
-	}
+    resetPassword = () => {
+		const { email } = this.state;
 
-	goToResetPassword = () => {
-		this.props.navigation.navigate('ResetPassword');
-	}
-	login = () => {
+
+        var auth = firebase.auth();
+		emailAddress = email;
+
+	
+        auth.sendPasswordResetEmail(emailAddress).then(function() {
 		
-		const { email, password } = this.state;
-
-		if(email!=""){
-				firebase.auth().signInWithEmailAndPassword(email, password)
-					.then(() =>{
-						firebase.auth().onAuthStateChanged(function(user) {
-							if (user) {
-							//Utilisateur connecté
-							
-							console.log("user")
-							console.log(user)
-							alert("Utilisateur connecté")
-							} else {
-							// No user is signed in.
-							}
-						});
-					})
-					.catch(function(error) {
-						// Handle Errors here.
-						var errorCode = error.code;
-						var errorMessage = error.message;
-						if(errorCode === 'auth/wrong-password'){
-							alert('Mauvais mot de passe.');
-						}else{
-							alert(errorMessage);
-						}
-					})
-
-					this.props.navigation.navigate('Favorites');
-					
-			}else{
-				alert("Identifiant vide")
-			}
-	}
-
-	goToInsciption = () => {
-		this.props.navigation.navigate('Inscription');
-	}
+           alert("email envoyé")
+        }).catch(function(error) {
+			alert("erreur")
+			
+		});
+		this.props.navigation.navigate('Login');
+    }
 
 	render() {
 		return (
@@ -103,48 +65,20 @@ class Login extends Component {
 										style={styles.inputIcon} />
 									<TextInput
 										style={styles.input}
-										placeholder={'Enter Username/Email'}
+										placeholder={'Enter Email adress'}
 										placeholderTextColor={'rgba(255, 255, 255, 0.7)'}
 										keyboardType={'email-address'}
 										returnKeyType='next'
 										autoCorrect={false}
 										underlineColorAndroid='transparent'
-										onSubmitEditing={() => this.refs.txtPassword.focus()}
 										onChangeText={(value) => this.setState({ email: value })}
 									/>
 								</View>
 
-								<View style={styles.inputContainer}>
-									<Icon name={'ios-lock'} size={28} color={'rgba(255, 255, 255, 0.7)'}
-										style={styles.inputIcon} />
-									<TextInput
-										style={styles.input}
-										placeholder={'Password'}
-										secureTextEntry={this.state.showPass}
-										placeholderTextColor={'rgba(255, 255, 255, 0.7)'}
-										underlineColorAndroid='transparent'
-										autoCorrect={false}
-										ref={"txtPassword"}
-										onChangeText={(value) => this.setState({ password: value })}
-									/>
-
-									<TouchableOpacity style={styles.btnEye} onPress={this.showPass.bind(this)}>
-										<Icon name={this.state.press == false ? 'ios-eye' : 'ios-eye-off'} size={26} color={'rgba(255, 255, 255, 0.7)'} />
-									</TouchableOpacity>
-
-								</View>
-
-								<TouchableOpacity style={styles.btnResetPass} onPress={this.goToResetPassword}>
-									<Text style={styles.labelResetPassword}>mot de passe oublié</Text>
+								<TouchableOpacity style={styles.btnLogin} onPress={this.resetPassword}>
+									<Text style={styles.text}>Récuperer mon mot de passe</Text>
 								</TouchableOpacity>
 							
-								<TouchableOpacity style={styles.btnLogin} onPress={this.login}>
-									<Text style={styles.text}>Login</Text>
-								</TouchableOpacity>
-
-								<TouchableOpacity style={styles.btnLogin} onPress={this.goToInsciption}>
-									<Text style={styles.text}>Pas encore inscrit ? Inscrivez-vous</Text>
-								</TouchableOpacity>
 							</View>
 						</TouchableWithoutFeedback>
 					</KeyboardAvoidingView>
@@ -231,4 +165,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default connect()(Login);
+export default connect()(ResetPassword);

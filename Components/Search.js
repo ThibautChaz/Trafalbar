@@ -4,16 +4,6 @@ import BottleList from './BottleList';
 import { getBottlesFromApiWithSearchedText, getBottlesFromApi, deconnexionUser } from '../API/TMDBApi';
 import firebase from 'firebase';
 
-// const config = {
-//     apiKey: "AIzaSyBgKiwt3_pFKP8Dh-9QwQyqdVx85qzwpWo",
-//     authDomain: "trafalbar.firebaseapp.com",
-//     databaseURL: "https://trafalbar.firebaseio.com",
-//     projectId: "trafalbar",
-//     storageBucket: "trafalbar.appspot.com",
-//     messagingSenderId: "384693289045"
-// };
-// const firebaseApp = firebase.initializeApp(config);
-
 class Search extends React.Component {
     constructor(props) {
         super(props);
@@ -28,6 +18,11 @@ class Search extends React.Component {
         }
         this._loadBottles = this._loadBottles.bind(this)
 
+    }
+    signOut = () => {
+        firebase.auth().signOut()
+        .then(data => console.log(data))
+        .catch(error => console.log(error))
     }
 
     componentDidMount() {
@@ -98,6 +93,8 @@ class Search extends React.Component {
             )
         }
     }
+//   <Button style={{ height: 50 }} title='Rechercher' onPress={() => this._searchBottles()} />
+//   <Button style={{ height: 50 }} title='Deconnexion' onPress={() => this.signOut()} />
 
     render() {
         return (
@@ -108,8 +105,7 @@ class Search extends React.Component {
                     onChangeText={(text) => this._searchTextInputChanged(text)}
                     onSubmitEditing={() => this._searchBottles()}
                 />
-                <Button style={{ height: 50 }} title='Rechercher' onPress={() => this._searchBottles()} />
-                <Button style={{ height: 50 }} title='Deconnexion' onPress={() => deconnexionUser()} />
+            
                 {/* {console.log(this.state.bottles)} */}
                 <BottleList
                     bottles={this.state.bottles}// C'est bien le component Search qui récupère les bouteilles depuis l'API et on les transmet ici pour que le component BottleList les affiche

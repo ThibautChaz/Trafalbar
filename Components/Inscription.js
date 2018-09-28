@@ -52,12 +52,20 @@ class Inscription extends Component {
 
 		if (password == confirmPass) {
 
-			result = inscriptionUser(this.state.email, this.state.password);
-
-			if(result){
+			firebase.auth().createUserWithEmailAndPassword(this.state.email,this.state.password)
+			
+					
+			.then(() =>{
 				this.props.navigation.navigate('Login')
-			}
-				
+			})		
+			.catch(function(error) {
+				// Handle Errors here.
+				var errorCode = error.code;
+				var errorMessage = error.message;
+				// ...
+			  });
+		
+			
 		 }else {
 			alert("Les mots de passe ne correspondent pas réessayez")
 		}

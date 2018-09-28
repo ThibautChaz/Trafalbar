@@ -11,6 +11,7 @@ import Favorites from "../Components/Favorites";
 import Login from "../Components/Login";
 import Inscription from "../Components/Inscription";
 import Profil from "../Components/Profil";
+import ResetPassword from "../Components/ResetPassword";
 
 const SearchStackNavigator = createStackNavigator({
   Search: {
@@ -66,7 +67,7 @@ const BottlesTabNavigator = createBottomTabNavigator(
       }
     },
     Profil: {
-      screen: Profil, // oublie pas l'import en haut xD,
+      screen: Profil, 
       navigationOptions: {
         tabBarIcon: () => {
           return (
@@ -102,7 +103,13 @@ const AuthSwitchNavigator = createSwitchNavigator(
       navigationOptions: {
         title: "Inscription"
       }
-    }
+    },
+    ResetPassword: {
+      screen: ResetPassword,
+      navigationOptions: {
+        title: "ResetPassword"
+      }
+  },
   },
   {
     initialRouteName: 'Login'

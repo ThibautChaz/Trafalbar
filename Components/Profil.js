@@ -6,8 +6,6 @@ import {
 import { connect } from 'react-redux';
 import { ListItem } from 'react-native-elements'
 
-import BaseIcon from '../base-icon/Icon'
-import Chevron from '../chevron/Chevron'
 import InfoText from '../infotext/InfoText'
 
 
@@ -23,23 +21,14 @@ class Profil extends Component {
 	render() {
 		return (
              
-	        <ScrollView style={styles.scroll}>
-                <View style={styles.userRow}>
-                  <View>
-                    <Text style={{ fontSize: 16 }}>UID</Text>
-                    <Text
-                      style={{
-                        color: 'gray',
-                        fontSize: 16,
-                      }}
-                    >
-                      EMAIL
-                    </Text>
-                  </View>
-                </View>
-
-                <InfoText text="Account" />
-                
+	    <ScrollView style={styles.scroll}>
+        <View style={styles.userRow}>
+          <View>
+          <InfoText text="EMAIL :" />
+          <InfoText text="Age :" />     
+          <InfoText text="Sexe :" />  
+          </View>
+        </View>
 			</ScrollView>
 		);
 	}

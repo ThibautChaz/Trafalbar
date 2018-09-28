@@ -47,35 +47,33 @@ export function getBottlesFromApi(callbackFn) {
 export function connexionUser(email, password) {
     
     firebase.auth().signInWithEmailAndPassword(email, password)
-    
+
     .catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        // ...
-      });
-      
+        if(errorCode === 'auth/wrong-password'){
+            alert('Mauvais mot de passe.');
+        }else{
+            alert(errorMessage);
+        }
+    }
+    );
 
 }
+      
 
 export function inscriptionUser(email, password) {
 
     const result = firebase.auth().createUserWithEmailAndPassword(email, password)
 
 
-    .then(function(){
-        return result;
-    })
     .catch(function(error) {
 
         var errorCode = error.code;
 
         var errorMessage = error.message;
-        if (errorCode === 'auth/wrong-password') {
-            alert('Mauvais mot de passe.');
-          } else {
-            alert(errorMessage);
-          }
+       
         
 
     })
