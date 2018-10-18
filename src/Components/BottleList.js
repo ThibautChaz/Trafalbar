@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, FlatList, Text } from 'react-native'
+import { StyleSheet, FlatList } from 'react-native'
 import BottleItem from './BottleItem'
 import { connect } from 'react-redux'
 
@@ -23,8 +23,6 @@ class BottleList extends React.Component {
             <FlatList
                 style={styles.list}
                 data={this.props.bottles}
-                // keyExtractor={(item) => console.log("key")}
-                // renderItem={({item}) => console.log(item)}
                 keyExtractor={( item ) => item.id.toString()}
                 renderItem={({ item }) => (
                     <BottleItem

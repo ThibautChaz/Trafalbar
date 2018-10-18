@@ -1,31 +1,32 @@
 import React, { Component } from 'react';
 import {
-	Platform, StyleSheet, Text, TouchableWithoutFeedback, StatusBar, TextInput, View, ImageBackground, Image, Dimensions,
+	StyleSheet, Text, TouchableWithoutFeedback, StatusBar, TextInput, View, ImageBackground, Image, Dimensions,
 	SafeAreaView, Keyboard, TouchableOpacity, KeyboardAvoidingView, ScrollView
 } from 'react-native';
-import bgImage from '../Images/background.jpg';
-import logo from '../Images/logo.png';
+import bgImage from '../assets/images/background.jpg';
+import logo from '../assets/images/logo.png';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { inscriptionUser } from '../API/TMDBApi';
 import { connect } from 'react-redux';
+import { connexionUser, userIsConnected } from '../API/TMDBApi';
 
 const { width: WIDTH } = Dimensions.get('window')
-class Inscription extends Component {
+class Login extends Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
 			showPass: true,
 			press: false,
-			email: "",
-			password: "",
-			confirmPass: ""
+			email: "test@test.fr",
+			password: "654321",
+			isConnected: false,
 		}
+		console.ignoredYellowBox = [
+			'Setting a timer'
+		];
 	}
 
 	componentDidMount() {
-		// axios("127.0.0.1")
-		// 	.then(data => console.log(data))
 	}
 
 	showPass = () => {
@@ -42,40 +43,39 @@ class Inscription extends Component {
 		}
 	}
 
-	goToLogin = () => {
-		this.props.navigation.navigate('Login')
+	goToResetPassword = () => {
+		this.props.navigation.navigate('ResetPassword');
 	}
 
-	inscrip = () => {
+	login = () => {
 
-		const { email, password, confirmPass } = this.state;
+		const { email, password } = this.state;
 
-		if (password == confirmPass) {
+		if (email != "") {
 
-			firebase.auth().createUserWithEmailAndPassword(this.state.email,this.state.password)
-			
-					
-			.then(() =>{
-				this.props.navigation.navigate('Login')
-			})		
-			.catch(function(error) {
-				// Handle Errors here.
-				var errorCode = error.code;
-				var errorMessage = error.message;
-				// ...
-			  });
-		
-			
-		 }else {
-			alert("Les mots de passe ne correspondent pas réessayez")
+			connexionUser(email, password);
+
+			var verifConnexion = userIsConnected();
+
+			if (verifConnexion == true) {
+
+				this.props.navigation.navigate('Favorites');
+			}
+
+
+		} else {
+			alert("Identifiant vide");
 		}
+	}
 
+	goToInsciption = () => {
+		this.props.navigation.navigate('Inscription');
 	}
 
 	render() {
 		return (
-			<ScrollView>
-				<ImageBackground source={bgImage} style={styles.backgroundContainer}>
+			<ImageBackground source={bgImage} style={styles.backgroundContainer}>
+				<ScrollView>
 					<SafeAreaView style={{ flex: 1 }}>
 						<StatusBar barStyle="light-content" />
 						<KeyboardAvoidingView behavior='padding' style={{ flex: 1 }}>
@@ -113,7 +113,6 @@ class Inscription extends Component {
 											underlineColorAndroid='transparent'
 											autoCorrect={false}
 											ref={"txtPassword"}
-											onSubmitEditing={() => this.refs.txtPasswordConfirm.focus()}
 											onChangeText={(value) => this.setState({ password: value })}
 										/>
 
@@ -123,39 +122,23 @@ class Inscription extends Component {
 
 									</View>
 
-									<View style={styles.inputContainer}>
-										<Icon name={'ios-lock'} size={28} color={'rgba(255, 255, 255, 0.7)'}
-											style={styles.inputIcon} />
-										<TextInput
-											style={styles.input}
-											placeholder={'Confirm Password'}
-											secureTextEntry={this.state.showPass}
-											placeholderTextColor={'rgba(255, 255, 255, 0.7)'}
-											underlineColorAndroid='transparent'
-											autoCorrect={false}
-											ref={"txtPasswordConfirm"}
-											onChangeText={(value) => this.setState({ confirmPass: value })}
-										/>
-
-										<TouchableOpacity style={styles.btnEye} onPress={this.showPass.bind(this)}>
-											<Icon name={this.state.press == false ? 'ios-eye' : 'ios-eye-off'} size={26} color={'rgba(255, 255, 255, 0.7)'} />
-										</TouchableOpacity>
-
-									</View>
-
-									<TouchableOpacity style={styles.btnLogin} onPress={this.inscrip}>
-										<Text style={styles.text}>Inscription</Text>
+									<TouchableOpacity style={styles.btnResetPass} onPress={this.goToResetPassword}>
+										<Text style={styles.labelResetPassword}>mot de passe oublié</Text>
 									</TouchableOpacity>
 
-									<TouchableOpacity style={styles.btnLogin} onPress={this.goToLogin}>
-										<Text style={styles.text}>Déjà inscrit ? Connectez vous !</Text>
+									<TouchableOpacity style={styles.btnLogin} onPress={this.login}>
+										<Text style={styles.text}>Login</Text>
+									</TouchableOpacity>
+
+									<TouchableOpacity style={styles.btnLogin} onPress={this.goToInsciption}>
+										<Text style={styles.text}>Pas encore inscrit ? Inscrivez-vous</Text>
 									</TouchableOpacity>
 								</View>
 							</TouchableWithoutFeedback>
 						</KeyboardAvoidingView>
 					</SafeAreaView>
-				</ImageBackground>
-			</ScrollView>
+				</ScrollView>
+			</ImageBackground>
 		);
 	}
 }
@@ -172,6 +155,19 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		marginTop: '25%',
 		marginBottom: 50
+	},
+	labelResetPassword: {
+		color: 'purple',
+		fontSize: 15,
+		fontStyle: 'italic',
+		justifyContent: 'center',
+		alignItems: 'center',
+		textAlign: 'center'
+	},
+	btnResetPass: {
+		width: WIDTH - 55,
+		height: 45,
+		justifyContent: 'center',
 	},
 	logo: {
 		width: 120,
@@ -224,4 +220,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default connect()(Inscription)
+export default connect()(Login);

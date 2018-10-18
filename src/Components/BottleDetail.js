@@ -1,8 +1,6 @@
 import React from 'react'
-import { StyleSheet, View, Text, ActivityIndicator, ScrollView, Image, Button, TouchableOpacity } from 'react-native'
-import { getBottleDetailFromApi, getImageFromApi, getUrlFromStorage } from '../API/TMDBApi'
-import moment from 'moment'
-import numeral from 'numeral'
+import { StyleSheet, View, Text, ActivityIndicator, ScrollView, Image, TouchableOpacity } from 'react-native'
+import { getBottleDetailFromApi, getUrlFromStorage } from '../API/TMDBApi'
 import { connect } from 'react-redux';
 
 
@@ -14,7 +12,7 @@ class BottleDetail extends React.Component {
         this.state = {
             bottle: null,
             isLoading: true,
-            imgSrc: require('../Images/ic_image.png')
+            imgSrc: require('../assets/images/ic_image.png')
         }
 
         const favoriteBottleIndex = props.favoritesBottle.findIndex(item => item.id === props.navigation.state.params.idBottle)
@@ -82,9 +80,9 @@ class BottleDetail extends React.Component {
     }
 
     _displayFavoriteImage() {
-        var sourceImage = require('../Images/ic_favorite_border.png')
+        var sourceImage = require('../assets/images/ic_favorite_border.png')
         if (this.props.favoritesBottle.findIndex(item => item.id === this.state.bottle.id) !== -1) {
-            sourceImage = require('../Images/ic_favorite.png')
+            sourceImage = require('../assets/images/ic_favorite.png')
         }
         return (
             <Image

@@ -5,13 +5,13 @@ import {
   createBottomTabNavigator,
   createSwitchNavigator
 } from "react-navigation";
-import Search from "../Components/Search";
-import BottleDetail from "../Components/BottleDetail";
-import Favorites from "../Components/Favorites";
-import Login from "../Components/Login";
-import Inscription from "../Components/Inscription";
-import Profil from "../Components/Profil";
-import ResetPassword from "../Components/ResetPassword";
+import Search from "../../Components/Search";
+import BottleDetail from "../../Components/BottleDetail";
+import Favorites from "../../Components/Favorites";
+import Login from "../../Components/Login";
+import Inscription from "../../Components/Inscription";
+import Profil from "../../Components/Profil";
+import ResetPassword from "../../Components/ResetPassword";
 
 const SearchStackNavigator = createStackNavigator({
   Search: {
@@ -45,7 +45,7 @@ const BottlesTabNavigator = createBottomTabNavigator(
         tabBarIcon: () => {
           return (
             <Image
-              source={require("../Images/ic_favorite.png")}
+              source={require("../../assets/images/ic_favorite.png")}
               style={styles.icon}
             />
           );
@@ -59,7 +59,7 @@ const BottlesTabNavigator = createBottomTabNavigator(
           // On définit le rendu de nos icônes par les images récemment ajoutés au projet
           return (
             <Image
-              source={require("../Images/ic_search.png")}
+              source={require("../../assets/images/ic_search.png")}
               style={styles.icon}
             />
           ); // On applique un style pour les redimensionner comme il faut
@@ -72,7 +72,7 @@ const BottlesTabNavigator = createBottomTabNavigator(
         tabBarIcon: () => {
           return (
             <Image
-              source={require("../Images/ic_profil.png")}//Tu dl un icon profil que tu veux et tu change ici le nom psk la ca sera licon favoris
+              source={require("../../assets/images/ic_profil.png")}//Tu dl un icon profil que tu veux et tu change ici le nom psk la ca sera licon favoris
               style={styles.icon}
             />
           );

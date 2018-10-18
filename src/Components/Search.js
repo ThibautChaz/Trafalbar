@@ -1,7 +1,7 @@
 import React from 'react'
-import { StyleSheet, View, TextInput, Button, Text, FlatList, ActivityIndicator } from 'react-native'
+import { StyleSheet, View, TextInput, ActivityIndicator } from 'react-native'
 import BottleList from './BottleList';
-import { getBottlesFromApiWithSearchedText, getBottlesFromApi, deconnexionUser } from '../API/TMDBApi';
+import {getBottlesFromApi } from '../API/TMDBApi';
 import firebase from 'firebase';
 
 class Search extends React.Component {

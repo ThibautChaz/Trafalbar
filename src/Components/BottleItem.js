@@ -7,7 +7,7 @@ class BottleItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            imgSrc: require('../Images/ic_image.png')
+            imgSrc: require('../assets/images/ic_image.png')
         }
         const { bottle } = this.props;
 
@@ -22,7 +22,7 @@ class BottleItem extends React.Component {
             return (
                 <Image
                     style={styles.favorite_image}
-                    source={require('../Images/ic_favorite.png')}
+                    source={require('../assets/images/ic_favorite.png')}
                 />
             )
         }

@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import {
-	Platform, StyleSheet, Text, TouchableWithoutFeedback, StatusBar, TextInput, View, ImageBackground, Image, Dimensions,
-	SafeAreaView, Keyboard, TouchableOpacity, KeyboardAvoidingView
+	StyleSheet, Text, TouchableWithoutFeedback, StatusBar, TextInput, View, ImageBackground, Image, Dimensions,
+	SafeAreaView, Keyboard, TouchableOpacity, KeyboardAvoidingView, ScrollView
 } from 'react-native';
-import bgImage from '../Images/background.jpg';
-import logo from '../Images/logo.png';
+import bgImage from '../assets/images/background.jpg';
+import logo from '../assets/images/logo.png';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { connect } from 'react-redux';
-import firebase from 'firebase';
+import { resetPasswordWithEmail } from '../API/TMDBApi';
 
 const { width: WIDTH } = Dimensions.get('window')
 
@@ -31,25 +31,18 @@ class ResetPassword extends Component {
 
     resetPassword = () => {
 		const { email } = this.state;
-
-
-        var auth = firebase.auth();
-		emailAddress = email;
-
-	
-        auth.sendPasswordResetEmail(emailAddress).then(function() {
-		
-           alert("email envoyé")
-        }).catch(function(error) {
-			alert("erreur")
+		resetPasswordWithEmail(email).then((res)=>{
 			
-		});
-		this.props.navigation.navigate('Login');
-    }
+			if(res==true){
+				this.props.navigation.navigate('Login')
+			}	
+		})	
+	}
 
 	render() {
 		return (
 			<ImageBackground source={bgImage} style={styles.backgroundContainer}>
+			<ScrollView>
 				<SafeAreaView style={{ flex: 1 }}>
 					<StatusBar barStyle="light-content" />
 					<KeyboardAvoidingView behavior='padding' style={{ flex: 1 }}>
@@ -65,7 +58,7 @@ class ResetPassword extends Component {
 										style={styles.inputIcon} />
 									<TextInput
 										style={styles.input}
-										placeholder={'Enter Email adress'}
+										placeholder={'adresse email'}
 										placeholderTextColor={'rgba(255, 255, 255, 0.7)'}
 										keyboardType={'email-address'}
 										returnKeyType='next'
@@ -83,6 +76,7 @@ class ResetPassword extends Component {
 						</TouchableWithoutFeedback>
 					</KeyboardAvoidingView>
 				</SafeAreaView>
+				</ScrollView>
 			</ImageBackground>
 		);
 	}
