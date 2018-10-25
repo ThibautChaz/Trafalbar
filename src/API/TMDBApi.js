@@ -139,21 +139,24 @@ export function userIsConnected() {
     }
 
 }
+
 export async function getDataUser() {
+
     var usersRef = firebase.database().ref('UsersList');
     var user = firebase.auth().currentUser;
+    let dataUser;
 
     if (user) {
-        var test = await usersRef.child(user.uid).on('value', function (snapshot) {
-            console.log("snapshot")
-            console.log(snapshot)
-            let x = snapshot;
-           return x;
+        await usersRef.child(user.uid).once('value').then((snapshot) => {
+
+            dataUser = snapshot;
         })
     } else {
         alert("Vous n'êtes pas connecté")
     }
-    return test;
+    console.log("dataUser")
+    console.log(dataUser)
+    return dataUser;
 }
 
 export function createUserInDb(uid, email, age, sexe) {

@@ -10,6 +10,9 @@ class BottleList extends React.Component {
         this.state = {
             bottles: []
         }
+        console.ignoredYellowBox = [
+			'Setting a timer'
+		];
     }
 
     _displayDetailForBottle = (idBottle) => {

@@ -9,6 +9,9 @@ class BottleItem extends React.Component {
         this.state = {
             imgSrc: require('../assets/images/ic_image.png')
         }
+        console.ignoredYellowBox = [
+			'Setting a timer'
+		];
         const { bottle } = this.props;
 
         getUrlFromStorage(bottle.image)
@@ -16,7 +19,7 @@ class BottleItem extends React.Component {
             .catch(err => console.error(err));
     }
 
-    _displayFavoriteImage() {
+  /*  _displayFavoriteImage() {
         if (this.props.isBottleFavorite) {
             // Si la props isBottleFavorite vaut true, on affiche le 🖤
             return (
@@ -27,7 +30,7 @@ class BottleItem extends React.Component {
             )
         }
     }
-
+*/
     render() {
         const { bottle, displayDetailForBottle } = this.props;
         const { imgSrc } = this.state;
@@ -42,7 +45,6 @@ class BottleItem extends React.Component {
                 />
                 <View style={styles.content_container}>
                     <View style={styles.header_container}>
-                        {this._displayFavoriteImage()}
                         <Text style={styles.title_text}>{bottle.nom}</Text>
                         {/* <Text style={styles.vote_text}>{bottle.bouche}</Text> */}
                     </View>
@@ -51,7 +53,7 @@ class BottleItem extends React.Component {
                         {/* La propriété numberOfLines permet de couper un texte si celui-ci est trop long, il suffit de définir un nombre maximum de ligne */}
                     </View>
                     <View style={styles.date_container}>
-                        <Text style={styles.date_text}>Sorti le {bottle.nom}</Text>
+                        <Text style={styles.date_text}>ajouté le </Text>
                     </View>
                 </View>
             </TouchableOpacity>

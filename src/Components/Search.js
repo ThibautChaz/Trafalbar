@@ -16,6 +16,9 @@ class Search extends React.Component {
             bottles: [],
             isLoading: false
         }
+        console.ignoredYellowBox = [
+			'Setting a timer'
+		];
         this._loadBottles = this._loadBottles.bind(this)
 
     }

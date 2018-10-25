@@ -1,8 +1,8 @@
 import React from 'react'
-import { StyleSheet, View, Text, ActivityIndicator, ScrollView, Image, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, Text, ActivityIndicator, ScrollView, Image, TouchableOpacity, TextInput } from 'react-native'
 import { getBottleDetailFromApi, getUrlFromStorage } from '../API/TMDBApi'
 import { connect } from 'react-redux';
-
+import Modal from "react-native-modal";
 
 class BottleDetail extends React.Component {
 
@@ -12,8 +12,12 @@ class BottleDetail extends React.Component {
         this.state = {
             bottle: null,
             isLoading: true,
+            isModalVisible: false,
             imgSrc: require('../assets/images/ic_image.png')
         }
+        console.ignoredYellowBox = [
+            'Setting a timer'
+        ];
 
         const favoriteBottleIndex = props.favoritesBottle.findIndex(item => item.id === props.navigation.state.params.idBottle)
         if (favoriteBottleIndex > -1) {
@@ -77,12 +81,13 @@ class BottleDetail extends React.Component {
     _toggleFavorite() {
         const action = { type: "TOGGLE_FAVORITE", value: this.state.bottle }
         this.props.dispatch(action);
+        console.log("test")
     }
 
     _displayFavoriteImage() {
-        var sourceImage = require('../assets/images/ic_favorite_border.png')
+        var sourceImage = require('../assets/images/ic_favorite.png')
         if (this.props.favoritesBottle.findIndex(item => item.id === this.state.bottle.id) !== -1) {
-            sourceImage = require('../assets/images/ic_favorite.png')
+            sourceImage = require('../assets/images/unfavorite.png')
         }
         return (
             <Image
@@ -90,6 +95,12 @@ class BottleDetail extends React.Component {
                 source={sourceImage}
             />
         )
+    }
+    createForm() {
+        this.setState({
+            isModalVisible: true,
+        });
+
     }
 
     _displayBottle() {
@@ -105,10 +116,21 @@ class BottleDetail extends React.Component {
                     <Text style={styles.title_text}>{bottle.nom}</Text>
                     <TouchableOpacity
                         style={styles.favorite_container}
-                        onPress={() => this._toggleFavorite()}
+                        onPress={() => this.createForm()}
                     >
                         {this._displayFavoriteImage()}
                     </TouchableOpacity>
+                    <Modal isVisible={this.state.isModalVisible} onModalHide={() => this._toggleFavorite()}>
+                        <View style={{ flex: 1 }}>
+                            <Text>Ajout de la bouteille à la collection</Text>
+                            <TextInput>Date :</TextInput>
+                            <TextInput>Avis :</TextInput>
+                            <TextInput>Note :</TextInput>
+                            <TextInput>Lieu :</TextInput>
+                            <TextInput>Avec :</TextInput>
+                        </View>
+                    </Modal>
+
                     <Text style={styles.description_text}>{bottle.description}</Text>
                     <Text style={styles.default_text}>Age : {bottle.age}</Text>
                     <Text style={styles.default_text}>Bouche : {bottle.bouche}</Text>

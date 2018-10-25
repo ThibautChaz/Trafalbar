@@ -8,31 +8,13 @@
   <component name="ChangeListManager">
     <list default="true" id="86fdd125-2409-4036-bbeb-60c0a4b5dee0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/TMDBApi.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Components/BottleDetail.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Components/BottleItem.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Components/BottleList.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Components/Favorites.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Components/Inscription.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Components/Login.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Components/Profil.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Components/ResetPassword.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Components/Search.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Helpers/filmsData.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/background.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/ic_favorite.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/ic_favorite_border.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/ic_image.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/ic_profil.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/ic_search.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Navigation/Navigation.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/Reducers/favoriteReducer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/configureStore.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants/Colors.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infotext/InfoText.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/API/TMDBApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/API/TMDBApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/BottleDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/BottleDetail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/BottleItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/BottleItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Inscription.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Inscription.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Profil.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Profil.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/Navigation/Navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/Navigation/Navigation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/images/ic_favorite.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/ic_favorite.png" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -55,15 +37,25 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <expand>
             <path>
               <item name="rhumTest" type="1abcf292:AndroidViewProjectNode" />
               <item name="rhumTest" type="e9137016:NonAndroidModuleNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="rhumTest" type="b2602c69:ProjectViewProjectNode" />
+              <item name="rhumTest" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -181,20 +173,20 @@
       <window_info id="Image Layers" order="2" />
       <window_info id="Build Variants" order="2" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info active="true" anchor="bottom" id="Event Log" order="7" side_tool="true" visible="true" weight="0.32985386" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" visible="true" weight="0.32985386" />
       <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Logcat" order="7" />
       <window_info id="Captures" order="2" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18070363" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18070363" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Device File Explorer" order="3" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />

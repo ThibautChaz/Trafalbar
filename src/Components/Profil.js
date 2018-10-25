@@ -1,56 +1,60 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet, View, Dimensions, ScrollView, Text, TouchableOpacity, AsyncStorage
+  StyleSheet, View, Dimensions, ScrollView, Text,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { getDataUser  } from '../API/TMDBApi';
+import { getDataUser } from '../API/TMDBApi';
 const { width: WIDTH } = Dimensions.get('window')
 class Profil extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      email: ""
+      email: "",
+      age: 0,
+      sexe: ""
     }
-
+    console.ignoredYellowBox = [
+			'Setting a timer'
+		];
   }
+
   componentDidMount() {
-   this.retrieveDataEmail;
-    console.log("result")
-    console.log(getDataUser())
-  }
+    this.getEmail();
+    console.log("checkpoint")
 
-  retrieveDataEmail = async () => {
-    let email;
-    try {
-      const value = await AsyncStorage.getItem('CurrentUserEmail');
-      if (value !== null) {
-        // We have data!!
-        email = value;
-      }
-    } catch (error) {
-      // Error retrieving data
-      alert("erreurretrieve")
-      console.log(error)
-    }
-    this.state.email=email;
   }
-  
+  getEmail = async () => {
+
+    var data;
+    var email;
+    var age;
+    var sexe;
+
+    await getDataUser().then((res) => {
+      var result;
+      result = JSON.stringify(res);
+      data = JSON.parse(result);
+    })
+    email = data.email;
+    age = data.age;
+    sexe = data.sexe;
+
+    this.setState({
+      email: email,
+      age: age,
+      sexe: sexe
+    });
+  }
 
   render() {
     return (
       <ScrollView style={styles.scroll}>
         <View style={styles.userRow}>
           <View>
-            <Text>email :{this.state.email}</Text>
-            <Text>age :</Text>
-            <Text>sexe :</Text>
-            <TouchableOpacity style={styles.btnLogin} onPress={this.retrieveDataEmail}>
-              <Text style={styles.text}>test</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.btnLogin}>
-              <Text style={styles.text}>second test</Text>
-            </TouchableOpacity>
+            <Text style={styles.text}>email :{this.state.email}</Text>
+            <Text>age :{this.state.age}</Text>
+            <Text>sexe :{this.state.sexe}</Text>
           </View>
         </View>
       </ScrollView>
@@ -88,9 +92,7 @@ const styles = StyleSheet.create({
     borderColor: '#ECECEC',
   },
   text: {
-    color: 'rgba(255, 255, 255, 0.7)',
-    fontSize: 16,
-    textAlign: 'center'
+    marginTop: 200,
   },
 });
 

@@ -45,7 +45,7 @@ const BottlesTabNavigator = createBottomTabNavigator(
         tabBarIcon: () => {
           return (
             <Image
-              source={require("../../assets/images/ic_favorite.png")}
+              source={require("../../assets/images/bottle.png")}
               style={styles.icon}
             />
           );

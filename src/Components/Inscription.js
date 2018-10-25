@@ -25,6 +25,9 @@ class Inscription extends Component {
 			password: "",
 			confirmPass: ""
 		}
+		console.ignoredYellowBox = [
+			'Setting a timer'
+		];
 	}
 
 	componentDidMount() {
@@ -80,7 +83,6 @@ class Inscription extends Component {
 				console.log("test");
 				console.log(name);
 				console.log(branches[index]);
-
 			}
 		);
 	}

@@ -21,6 +21,9 @@ class ResetPassword extends Component {
 		this.state = {
 			email: "",
 		}
+		console.ignoredYellowBox = [
+			'Setting a timer'
+		];
 	}
 
 	componentDidMount() {
