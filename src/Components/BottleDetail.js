@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, View, Text, ActivityIndicator, ScrollView, Image, TouchableOpacity, TextInput } from 'react-native'
-import { getBottleDetailFromApi, getUrlFromStorage } from '../API/TMDBApi'
+import { getBottleDetailFromApi, getUrlFromStorage, addBottleToFavorites } from '../API/TMDBApi'
 import { connect } from 'react-redux';
 import Modal from "react-native-modal";
 
@@ -81,6 +81,11 @@ class BottleDetail extends React.Component {
     _toggleFavorite() {
         const action = { type: "TOGGLE_FAVORITE", value: this.state.bottle }
         this.props.dispatch(action);
+        var bouteille =this.state.bottle;
+        console.log("bouteille")
+        console.log(bouteille)
+        addBottleToFavorites(bouteille);
+        this.props.navigation.navigate('Favorites');
         console.log("test")
     }
 
@@ -120,14 +125,35 @@ class BottleDetail extends React.Component {
                     >
                         {this._displayFavoriteImage()}
                     </TouchableOpacity>
-                    <Modal isVisible={this.state.isModalVisible} onModalHide={() => this._toggleFavorite()}>
-                        <View style={{ flex: 1 }}>
+
+
+                    <Modal
+                        style={styles.modalContainer}
+                        animationType="slide"
+                        transparent={true}
+                        isVisible={this.state.isModalVisible}
+                        onModalHide={() => this._toggleFavorite()}>
+
+                        <View style={styles.modalView}>
+
                             <Text>Ajout de la bouteille à la collection</Text>
                             <TextInput>Date :</TextInput>
                             <TextInput>Avis :</TextInput>
                             <TextInput>Note :</TextInput>
                             <TextInput>Lieu :</TextInput>
                             <TextInput>Avec :</TextInput>
+
+                            <View style={styles.submitForm_view}>
+                                <Text
+                                    onPress={() => {
+                                        this.setState({
+                                            isModalVisible: false,
+                                        });
+                                    }}
+                                    style={styles.submitForm_button}>
+                                    Valider
+                                    </Text>
+                            </View>
                         </View>
                     </Modal>
 
@@ -157,6 +183,14 @@ class BottleDetail extends React.Component {
 const styles = StyleSheet.create({
     main_container: {
         flex: 1,
+
+    },
+    modal_container: {
+        flex: 0,
+    },
+    modalView: {
+        flex: 0,
+        backgroundColor: '#5882FA',
     },
     loading_container: {
         position: 'absolute',
@@ -168,7 +202,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     scrollview_container: {
-        flex: 1
+        flex: 1,
     },
     image: {
         height: 169,
@@ -192,6 +226,13 @@ const styles = StyleSheet.create({
         margin: 5,
         marginBottom: 15
     },
+    submitForm_button: {
+        backgroundColor: '#FF0000'
+    },
+    submitForm_view: {
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     default_text: {
         marginLeft: 5,
         marginRight: 5,
@@ -205,11 +246,11 @@ const styles = StyleSheet.create({
         height: 40
     }
 })
-// Ici, le paramètre  state  correspond au state global, celui de notre application. 
-// On a choisi ici de retourner le state de notre application dans la fonction  mapStateToProps  . 
+// Ici, le paramètre  state  correspond au state global, celui de notre application.
+// On a choisi ici de retourner le state de notre application dans la fonction  mapStateToProps  .
 
-// Cela signifie que l'on vient, à l'instant, de mapper le state de notre application dans les props 
-// du component BottleDetail.À présent, dans les props du component BottleDetail, 
+// Cela signifie que l'on vient, à l'instant, de mapper le state de notre application dans les props
+// du component BottleDetail.À présent, dans les props du component BottleDetail,
 // vous avez accès au state de l'application et donc aux bouteilles favoris.
 const mapStateToProps = state => {
     return {

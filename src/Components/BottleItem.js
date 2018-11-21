@@ -53,7 +53,6 @@ class BottleItem extends React.Component {
                         {/* La propriété numberOfLines permet de couper un texte si celui-ci est trop long, il suffit de définir un nombre maximum de ligne */}
                     </View>
                     <View style={styles.date_container}>
-                        <Text style={styles.date_text}>ajouté le </Text>
                     </View>
                 </View>
             </TouchableOpacity>

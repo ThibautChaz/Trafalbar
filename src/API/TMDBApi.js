@@ -12,11 +12,10 @@ const config = {
     messagingSenderId: "384693289045"
 };
 
-
 if (!firebase.apps.length) {
     firebaseApp = firebase.initializeApp(config);
-}
 
+}
 const storageRef = firebase.storage().ref();
 const bottleListRef = firebaseApp.database().ref('bouteille-list');
 
@@ -49,6 +48,7 @@ export async function storeDataEmail(email) {
         console.log(error)
     }
 }
+
 
 
 export async function connexionUser(email, password) {
@@ -136,6 +136,34 @@ export function userIsConnected() {
     }
     else {
         return false;
+    }
+
+}
+export async function displayCollectionUser() {
+
+    var user = firebase.auth().currentUser;
+    var collectionUser;
+
+    let itemsRef = firebaseApp.database().ref('/UsersList/' + user.uid + '/collection');
+    
+    return await itemsRef.once('value', (snapshot) => {
+        let data = snapshot.val();
+        return collectionUser = data;
+    });
+}
+
+export function addBottleToFavorites(bouteille) {
+
+    var user = firebase.auth().currentUser;
+
+    if (user) {
+        firebase.database().ref('UsersList/' + user.uid + '/collection').push({
+            bouteille
+        });
+
+    } else {
+        alert("Vous n'êtes pas connecté")
+
     }
 
 }
