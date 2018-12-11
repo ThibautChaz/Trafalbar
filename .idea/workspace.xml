@@ -8,9 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="86fdd125-2409-4036-bbeb-60c0a4b5dee0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/API/TMDBApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/API/TMDBApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/BottleDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/BottleDetail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/BottleItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/BottleItem.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/Favorites.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Favorites.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,6 +32,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -57,7 +55,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
